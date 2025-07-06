@@ -9,9 +9,13 @@ import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 import { faEarthAmericas } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 
 function Navbar() {
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
 
   const [isSearchActive, setIsSearchActive] = useState(false);
 
@@ -38,12 +42,12 @@ const toggleDropdown = (key) => {
     <div className="container-fluid">
         <div className="row">
             <div className="col-md-7">  
-              <div className="main d-md-flex ">
+              <div className="main d-flex ">
                 {!isSearchActive && (
               <>
-              <a href="#" className=" btn btn-light rounded-0 img-fluid p-2 shadow-none "><img src={myImage} alt="logo" ></img></a> 
+              <a href="#" className=" btn btn-light rounded-0 img-fluid p-2 shadow-none " id='hide'><img src={myImage} alt="logo" ></img></a> 
                <div className="line border border-end "></div>
-               <div className="dropdown" style={{ position: 'relative' }}>
+               <div className="dropdown"id='hide' >
                   <button className="btn btn-light rounded-0  px-4 p-3 border-0 dropdown-toggle no-caret shadow-none "  onClick={() => toggleDropdown('ai')}  type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"  aria-expanded={dropdowns.ai}>
                    AI <FontAwesomeIcon  icon={dropdowns.ai ? faAngleUp : faAngleDown}    className="ps-2"    style={{ transition: 'transform 0.3s ease' }}/>
                   </button>
@@ -62,7 +66,7 @@ const toggleDropdown = (key) => {
                     </div>
                   </ul>
                 </div>
-                 <div className="dropdown">
+                 <div className="dropdown"id='hide'>
                   <button className="btn btn-light rounded-0  px-4 p-3 border-0 dropdown-toggle no-caret shadow-none "  onClick={() => toggleDropdown('hybrid')}  type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"  aria-expanded={dropdowns.hybrid}>
                    Hybrid Cloud <FontAwesomeIcon    icon={dropdowns.hybrid ? faAngleUp : faAngleDown}    className="ps-2"    style={{ transition: 'transform 0.3s ease' }}/>
                   </button>
@@ -81,7 +85,7 @@ const toggleDropdown = (key) => {
                     </div>
                   </ul>
                 </div>
-                 <div className="dropdown">
+                 <div className="dropdown" id='hide'>
                   <button className="btn btn-light rounded-0  px-4 p-3 border-0 dropdown-toggle no-caret shadow-none "  onClick={() => toggleDropdown('product')}  type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"  aria-expanded={dropdowns.product}>
                    Products <FontAwesomeIcon    icon={dropdowns.product ? faAngleUp : faAngleDown}    className="ps-2"    style={{ transition: 'transform 0.3s ease' }}/>
                   </button>
@@ -136,8 +140,8 @@ const toggleDropdown = (key) => {
                 </ul>
                 </div>
                  
-               <a href="#" className="text-decoration-none rounded-0  btn btn-light px-4 p-3 border-0 dropdown-toggle no-caret shadow-none"> Consulting</a>
-                <div className="dropdown">
+               <a href="#" className="text-decoration-none rounded-0  btn btn-light px-4 p-3 border-0 dropdown-toggle no-caret shadow-none" id='hide' > Consulting</a>
+                <div className="dropdown"id='hide'>
                   <button className="btn btn-light rounded-0  px-4 p-3 border-0 dropdown-toggle no-caret shadow-none "  onClick={() => toggleDropdown('support')}  type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"  aria-expanded={dropdowns.support}>
                    Support <FontAwesomeIcon className='ps-2'  icon={dropdowns.support ? faAngleUp : faAngleDown} />   
                   </button>
@@ -156,17 +160,23 @@ const toggleDropdown = (key) => {
                     </div>
                   </ul>
                 </div>
-                    <a href="#" className="text-decoration-none rounded-0  btn btn-light px-4 p-3 border-0  no-caret shadow-none "> Think</a>
+                    <a href="#" className="text-decoration-none rounded-0  btn btn-light px-4 p-3 border-0  no-caret shadow-none " id='hide'> Think</a>
                         </>)}
                     </div>
-                    </div>   
-                      <div className="col-md d-md-flex ms-auto justify-content-end   ">
+                    </div>  
+                      <div className="col-md d-flex ms-auto justify-content-md-end " id='view'>
+                       <button className='btn btn-light' id='b-hide'onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                          <FontAwesomeIcon icon={faBars} />
+                        </button>
+                    <div id="default">
+                        <a href="#" className=" btn btn-light rounded-0 img-fluid p-2 shadow-none "><img src={myImage} alt="logo" ></img></a>
+                      </div> 
                         {!isSearchActive ? (
-                        <button className="btn btn-light p-3 border-0 shadow-none" onClick={() => setIsSearchActive(true)}>
+                        <button className="btn btn-light p-3 border-0 shadow-none hide  "  onClick={() => setIsSearchActive(true)}>
                           <FontAwesomeIcon icon={faSearch} />
                         </button>
                       ) : (
-                        <div className="d-md-flex align-items-center w-100">
+                        <div className="d-flex align-items-center w-100">
                           <input
                           type="text"
                           className="form-control form-control-lg border-bottom flex-grow-1"
@@ -179,9 +189,9 @@ const toggleDropdown = (key) => {
                           </button>
                         </div>
                     )}
-                    <a href="#" className="text-decoration-none rounded-0  btn btn-light p-3 border-0  no-caret shadow-none "> <FontAwesomeIcon icon={faComment} /></a>      
-                   < div class="dropdown">
-                       <button class="btn btn-light rounded-0 p-3 border-0 dropdown-toggle shadow-none no-caret shadow-none " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >
+                    <a href="#" className="text-decoration-none rounded-0  btn btn-light p-3 border-0  no-caret shadow-none  hide"> <FontAwesomeIcon icon={faComment} /></a>      
+                   < div class="dropdown" id='only'>
+                       <button class="btn btn-light rounded-0 p-3 border-0 dropdown-toggle shadow-none no-caret shadow-none hide " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >
                          <FontAwesomeIcon icon={faEarthAmericas}/>
                        </button>
                        <ul class="dropdown-menu  rounded-0" aria-labelledby="dropdownMenuButton">
@@ -197,8 +207,8 @@ const toggleDropdown = (key) => {
                           <div className="line border-1 border-bottom"></div> 
                        </ul>
                      </div>          
-                    <div class="dropdown">
-                       <button class="btn btn-light rounded-0 p-3 border-0 dropdown-toggle shadow-none no-caret shadow-none " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >
+                    <div class="dropdown" >
+                       <button class="btn btn-light rounded-0 p-3 border-0 dropdown-toggle shadow-none no-caret shadow-none hide " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >
                          <FontAwesomeIcon icon={faUser }/>
                        </button>
                        <ul class="dropdown-menu p-0 rounded-0" aria-labelledby="dropdownMenuButton">
@@ -206,12 +216,26 @@ const toggleDropdown = (key) => {
                           <div className="line border-1 border-bottom"></div>
                          <li><a class="dropdown-item " href="#">Log in</a></li>
                        </ul>
-                     </div>      
+                     </div>    
                 </div>
                 <div className="line border-1 border-secondry border-bottom"></div> 
           </div>  
-          
+                 <div className={`sidebar  ${isSidebarOpen ? 'open' : ''}`}>
+            <button className="btn btn-dark mb-3" onClick={() => setIsSidebarOpen(false)}>
+               ✕ Close
+           </button>
+                <ul className="list-unstyled">
+                  <li><a className="text-white text-decoration-none fw-bold " href="#"> AI</a></li>
+                  <hr />
+                  <li><a className="text-white text-decoration-none fw-bold" href="#">Products</a></li>
+                  <hr />
+                  <li><a className="text-white text-decoration-none fw-bold"  href="#"> Hybrid Cloud</a></li>
+                  <hr />
+                  <li><a className="text-white text-decoration-none fw-bold text-danger" href="#"> Think</a></li>
+                </ul>
+              </div>
         </div>
+ 
  </>
   )
 };
